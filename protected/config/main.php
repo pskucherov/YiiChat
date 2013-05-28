@@ -20,6 +20,14 @@ return array(
 
 	'defaultController'=>'post',
 
+    'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'abc'
+        ),
+        'chat',
+    ),
+
 	// application components
 	'components'=>array(
 		'user'=>array(

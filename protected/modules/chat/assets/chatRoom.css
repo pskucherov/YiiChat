@@ -1,0 +1,40 @@
+.chatBorder {
+    border: 3px  solid;
+    border-color: #b5d7e7;
+
+}
+
+.chatSize {
+    width: 510px;
+    height: 230px;
+}
+
+.chatPostSize {
+    width: 510px;
+    height: 30px;
+}
+
+
+.chatBody {
+    padding: 10px;
+    margin: 0px;
+}
+
+.chatPost {
+    padding: 10px;
+    margin:  -3px 0 0 0;
+    vertical-align: middle;
+}
+
+.block{
+    display:inline-block;
+    vertical-align: top;
+}
+
+.closeImg{
+    margin: -2px -5px 0 0;
+    padding: 0px;
+    height: 313px;
+    width: 16px;
+    cursor: pointer;
+}
