@@ -20,7 +20,7 @@
 
 .chatPostSize {
     width: 510px;
-    height: 30px;
+    height: 25px;
 }
 
 
@@ -47,7 +47,38 @@
 #closeImg{
     float: left;
     padding: 0px;
-    height: 310px;
+    height: 305px;
     width: 16px;
     cursor: pointer;
+    display: none;
+}
+
+#ajaxLoader {
+    margin: 20px 0 0 160px;
+}
+
+#chatSubmitButton {
+    margin-top: -6px;
+    width: 115px;
+    height: 37px;
+    border: 3px  solid;
+    border-color: #b5d7e7;
+    background-color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    color: #b5d7e7;
+    vertical-align: middle;
+    line-height: 28px;
+    cursor: pointer;
+    float: right;
+}
+
+#chatTextField {
+
+    width: 375px;
+    border: 3px  solid;
+    border-color: #b5d7e7;
+    background-color: #FFFFFF;
+    height: 20px;
+    margin: -3px;
 }

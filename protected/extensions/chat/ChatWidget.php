@@ -3,7 +3,7 @@
 class ChatWidget extends CWidget
 {
 
-    private $loadingImageUrl;
+    private $ajaxLoader;
     private $closeWinImageUrl;
     private $openWinImageUrl;
 
@@ -27,7 +27,7 @@ class ChatWidget extends CWidget
             )
         );
 
-        $this->loadingImageUrl = Yii::app()->assetManager->publish(
+        $this->ajaxLoader = Yii::app()->assetManager->publish(
             $assetsDir.'/ajax-loader.gif'
         );
 
@@ -55,7 +55,6 @@ class ChatWidget extends CWidget
                     chat.redraw();
                 });
 
-
             });
         ");
 
@@ -67,7 +66,8 @@ class ChatWidget extends CWidget
     public function run()
     {
         $this->render("body", array(
-            'openWinImageUrl' => $this->openWinImageUrl,
+                'openWinImageUrl' => $this->openWinImageUrl,
+                'ajaxLoader' => $this->ajaxLoader,
            )
         );
     }

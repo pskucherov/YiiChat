@@ -24,6 +24,7 @@ ChatPosition.prototype.getPagePos = function() {
 }
 
 ChatPosition.prototype.closeChat = function() {
+    $('#closeImg').css('display', 'inline');
     $('#chat-block').css('display', 'none');
     $('#closeImg').css('left', (this.pageLeft + this.pageWidth - this.closeImgWidth));
     $('#closeImg').css('top', (this.pageTop + this.offsetTop));

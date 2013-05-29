@@ -26,6 +26,9 @@ return array(
             'password'=>'abc'
         ),
         'chat',
+        'chatWidget'=>array(
+            'class' => 'ext.chat.ChatWidget'
+        ),
     ),
 
 	// application components
