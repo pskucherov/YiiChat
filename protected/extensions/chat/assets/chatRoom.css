@@ -1,0 +1,53 @@
+#chat-slide-out {
+    padding: 0;
+    margin: 0;
+}
+
+.chatPos{
+    position: absolute;
+    left: 200px;
+}
+
+.chatBorder {
+    border: 3px  solid;
+    border-color: #b5d7e7;
+}
+
+.chatSize {
+    width: 510px;
+    height: 230px;
+}
+
+.chatPostSize {
+    width: 510px;
+    height: 30px;
+}
+
+
+.chatBody {
+    padding: 10px;
+    margin: 0px;
+}
+
+#chat-block{
+    /*display:inline-block;*/
+    display: none;
+    vertical-align: top;
+    background: #FFFFFF;
+}
+
+
+.chatPost {
+    padding: 10px;
+    margin:  -3px 0 0 0;
+    vertical-align: middle;
+}
+
+
+#closeImg{
+    float: left;
+    padding: 0px;
+    height: 310px;
+    width: 16px;
+    cursor: pointer;
+}
