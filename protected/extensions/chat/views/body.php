@@ -7,24 +7,20 @@
         <div class="chatPostSize chatBorder chatPost">
             <?php
             echo CHtml::beginForm();
-            echo CHtml::textField('chattext', '', array('id' => 'chatTextField'));
-            echo CHtml::ajaxSubmitButton('SEND', '../asdasdg',
-
-
+            echo CHtml::textField('chattext', '', array('id' => 'chatTextField', 'maxlength' => 100));
+            echo CHtml::ajaxSubmitButton('SEND', CHtml::normalizeUrl(array('chat/chatroom/post')),
                 array(
                     'type'=>'POST',
                     'dataType'=>'json',
                     'success'=>'js:function(data){
-       if(data.result==="success"){
-          alert(123);
-       }else{
-         alert(444);
-        }
-        }',
-        'complete'=>'function() { $("#chatTextField").val(""); }',
-        )
-
-
+                        if(data.result === "success"){
+                            getNewMessages();
+                        }
+                      }',
+                    'complete'=>'function() {
+                        $("#chatTextField").val("");
+                    }',
+                )
                 , array('id' => 'chatSubmitButton'));
             echo CHtml::endForm();
             ?>

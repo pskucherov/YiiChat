@@ -74,11 +74,15 @@
 }
 
 #chatTextField {
-
     width: 375px;
     border: 3px  solid;
     border-color: #b5d7e7;
     background-color: #FFFFFF;
     height: 20px;
     margin: -3px;
+}
+
+#chat-messages {
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

@@ -16,6 +16,13 @@ class ChatWidget extends CWidget
 
         $cs->registerScriptFile(
             Yii::app()->assetManager->publish(
+                $assetsDir.'/jquery.scrollTo-min.js'
+            ),
+            CClientScript::POS_END
+        );
+
+        $cs->registerScriptFile(
+            Yii::app()->assetManager->publish(
                 $assetsDir.'/ChatPosition.js'
             ),
             CClientScript::POS_END
@@ -40,28 +47,53 @@ class ChatWidget extends CWidget
         );
 
         $cs->registerScript('#myScript', "
-            $(function() {
 
-                var chat = new ChatPosition();
-                chat.init('" . $this->closeWinImageUrl . "', '" . $this->openWinImageUrl . "', 150);
-                chat.getPagePos();
-                chat.closeChat();
+            var intervalId = null;
+            var lastGetId = 0;
 
-                $('#closeImg').click(function(){
-                    chat.changeState();
-                });
+            function getLastMessages(num) {
+                $.post('" . CHtml::normalizeUrl(array('chat/chatroom/show')) . "', { num: num }, function(data) {
+                    $('#ajaxLoader').css('display', 'none');
+                    $('#chat-messages').html(data.text);
+                    if ( data.lastId ) {
+                        lastGetId = data.lastId;
+                        $('#chat-messages').scrollTo('100%');
+                    }
+                }, 'json');
+            }
 
-                $(window).resize(function() {
-                    chat.redraw();
-                });
+            function getNewMessages() {
+                $.post('" . CHtml::normalizeUrl(array('chat/chatroom/show')) . "', { lastId: lastGetId }, function(data) {
+                    $('#chat-messages').append(data.text);
+                    if ( data.lastId ) {
+                        lastGetId = data.lastId;
+                        $('#chat-messages').scrollTo('100%');
+                    }
+                }, 'json');
+            }
 
+            var chat = new ChatPosition();
+            chat.init('" . $this->closeWinImageUrl . "', '" . $this->openWinImageUrl . "', 150);
+            chat.getPagePos();
+            chat.closeChat();
+
+            $('#closeImg').click(function(){
+                if ( intervalId === null ) {
+                    getLastMessages(15);
+                    intervalId = setInterval(function(){
+                       getNewMessages();
+                    }, 5000);
+                }
+                chat.changeState();
             });
+
+            $(window).resize(function() {
+                chat.redraw();
+            });
+
+
         ");
-
-
     }
-
-
 
     public function run()
     {

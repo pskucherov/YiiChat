@@ -39,7 +39,7 @@ class Chat extends CActiveRecord
 		return array(
 			array('text, create_time, author_id', 'required'),
 			array('create_time, author_id', 'numerical', 'integerOnly'=>true),
-			array('text', 'length', 'max'=>100),
+			array('text', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, text, create_time, author_id', 'safe', 'on'=>'search'),
@@ -54,6 +54,7 @@ class Chat extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'author' => array(self::BELONGS_TO, 'User', 'author_id'),
 		);
 	}
 
