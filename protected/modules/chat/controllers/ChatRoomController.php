@@ -17,8 +17,6 @@ class ChatRoomController extends Controller
             }
 
             if (isset($_POST['lastId'])) {
-                //echo $_POST['lastId'] ."<BR>";
-                //$criteria->compare('t.id', '>='.intval($_POST['lastId']));
                 $criteria->addCondition('t.id > ' . intval($_POST['lastId']));
             }
 
@@ -60,27 +58,30 @@ class ChatRoomController extends Controller
             throw new CHttpException(404);
         } else {
             $arr = array();
-            if ( mb_strlen($_POST['chattext']) <= 100 )
-            {
-                $arr['result'] = 'success';
-                $arr['text']   = htmlspecialchars($_POST['chattext']);
-    
-                $model = new Chat();
-                $model->text        = $arr['text'];
-                $model->create_time = time();
-    
-                $dateTime = date("H:i n/j/Y", $model->create_time);
-    
-                if ( Yii::app()->user->isGuest ) {
-                    $model->author_id = 0;
-                    $arr['text'] = "<b>Guest [" . $dateTime . "]</b><BR>" . $arr['text'];
-                } else {
-                    $model->author_id = Yii::app()->user->getId();
-                    $arr['text'] = "<b>" . Yii::app()->user->getName() . " [" . $dateTime . "]</b><BR>" . $arr['text'];
+
+            if (isset($_POST['chattext'])) {
+                $_POST['chattext'] = trim($_POST['chattext']);
+                if ( !empty($_POST['chattext']) && mb_strlen($_POST['chattext']) <= 100 )
+                {
+                    $arr['result'] = 'success';
+                    $arr['text']   = htmlspecialchars($_POST['chattext']);
+
+                    $model = new Chat();
+                    $model->text        = $arr['text'];
+                    $model->create_time = time();
+
+                    $dateTime = date("H:i n/j/Y", $model->create_time);
+
+                    if ( Yii::app()->user->isGuest ) {
+                        $model->author_id = 0;
+                        $arr['text'] = "<b>Guest [" . $dateTime . "]</b><BR>" . $arr['text'];
+                    } else {
+                        $model->author_id = Yii::app()->user->getId();
+                        $arr['text'] = "<b>" . Yii::app()->user->getName() . " [" . $dateTime . "]</b><BR>" . $arr['text'];
+                    }
+                    $model->save();
                 }
-    
-                $model->save();
-    
+
             }
             else
             {
