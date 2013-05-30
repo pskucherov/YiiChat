@@ -8,7 +8,7 @@
             <?php
             echo CHtml::beginForm();
             echo CHtml::textField('chattext', '', array('id' => 'chatTextField', 'maxlength' => 100));
-            echo CHtml::ajaxSubmitButton('SEND', CHtml::normalizeUrl(array('chat/chatroom/post')),
+            echo CHtml::ajaxSubmitButton('SEND', CHtml::normalizeUrl(array('chat/chatRoom/post')),
                 array(
                     'type'=>'POST',
                     'dataType'=>'json',

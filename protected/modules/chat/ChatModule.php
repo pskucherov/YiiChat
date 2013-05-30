@@ -5,16 +5,11 @@ class ChatModule extends CWebModule
 
 	public function init()
 	{
-
 		$this->setImport(array(
 			'chat.models.*',
 			//'chat.components.*',
 		));
-
-
 	}
-
-
 
 	public function beforeControllerAction($controller, $action)
 	{
@@ -26,7 +21,5 @@ class ChatModule extends CWebModule
 		else
 			return false;
 	}
-
-
 
 }
